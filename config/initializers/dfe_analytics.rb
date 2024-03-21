@@ -47,10 +47,17 @@ DfE::Analytics.configure do |config|
   # environment variable.
   #
   # config.enable_analytics = proc { true }
-  config.enable_analytics = proc { FeatureService.enabled?("google.send_data_to_big_query") }
+  config.enable_analytics = proc { Settings.google.big_query.send_data_to_big_query }
 
   # The environment we’re running in. This value will be attached
   # to all events we send to BigQuery.
   #
   # config.environment = ENV.fetch('RAILS_ENV', 'development')
+
+  # Enable workload identity federation
+  config.azure_federated_auth = Settings.google.big_query.azure_federated_auth
+
+  # Load Azure env variables
+  config.azure_client_id = ENV("AZURE_CLIENT_ID", nil)
+  config.azure_token_path = ENV("AZURE_FEDERATED_TOKEN_FILE", nil)
 end
