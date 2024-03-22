@@ -58,6 +58,6 @@ DfE::Analytics.configure do |config|
   config.azure_federated_auth = Settings.google.big_query.azure_federated_auth
 
   # Load Azure env variables
-  #config.azure_client_id = ENV.fetch("AZURE_CLIENT_ID", nil)
-  #config.azure_token_path = ENV.fetch("AZURE_FEDERATED_TOKEN_FILE", nil)
+  config.azure_client_id = "0f5b6d11-ae94-4829-93fc-1cbfc4b0e9de"
+  config.azure_token_path = "/var/run/secrets/azure/tokens/azure-identity-token"
 end
